@@ -3,16 +3,19 @@ package jacekskorupa.currencyconverter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jacekskorupa.currencyconverter.model.Currency;
+import jacekskorupa.currencyconverter.model.RealTimeCurrency;
+import jacekskorupa.currencyconverter.model.RealTimeCurrencyEchangeRate;
 import jacekskorupa.currencyconverter.repositories.CurrencyRepository;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
+
 import java.util.Map;
-import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping(path = {"/index"})
@@ -42,5 +45,14 @@ public class IndexController {
 
         return currencesMap.toString();
 
+    }
+
+    @GetMapping(path = {"/getCurrences/{from}/convert/{to}"})
+    public RealTimeCurrencyEchangeRate currencyExchangeRate(@PathVariable String from,@PathVariable String to){
+        String currencyExchangeUrl = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=" + from + "&to_currency=" + to + "&apikey=KFT0KZZ3V5FDR44G";
+
+        RestTemplate restTemplate = new RestTemplate();
+        RealTimeCurrency exchangeRate = restTemplate.getForObject(currencyExchangeUrl, RealTimeCurrency.class);
+        return exchangeRate.getRealTimeCurrencyEchangeRate();
     }
 }
