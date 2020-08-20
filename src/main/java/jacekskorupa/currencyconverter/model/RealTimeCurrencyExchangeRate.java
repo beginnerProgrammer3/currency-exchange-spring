@@ -30,7 +30,7 @@ import javax.persistence.Id;
         "8. Bid Price",
         "9. Ask Price"
 })
-public class RealTimeCurrencyEchangeRate {
+public class RealTimeCurrencyExchangeRate {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

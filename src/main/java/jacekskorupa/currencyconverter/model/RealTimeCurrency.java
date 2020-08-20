@@ -18,7 +18,7 @@ import lombok.Setter;
 })
 public class RealTimeCurrency {
     @JsonProperty("Realtime Currency Exchange Rate")
-    private RealTimeCurrencyEchangeRate realTimeCurrencyEchangeRate;
+    private RealTimeCurrencyExchangeRate realTimeCurrencyExchangeRate;
 
 
 }
