@@ -8,17 +8,27 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "Realtime Currency Exchange Rate"
+        "1. open",
+        "2. high",
+        "3. low",
+        "4. close"
 })
-public class RealTimeCurrency {
-    @JsonProperty("Realtime Currency Exchange Rate")
-    private RealTimeCurrencyExchangeRate realTimeCurrencyExchangeRate;
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class CurrencyChange {
+
+    @JsonProperty("1. open")
+    public String open;
+    @JsonProperty("2. high")
+    public String high;
+    @JsonProperty("3. low")
+    public String low;
+    @JsonProperty("4. close")
+    public String close;
 
 
 }

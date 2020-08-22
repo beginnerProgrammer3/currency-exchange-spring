@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jacekskorupa.currencyconverter.model.Currency;
 import jacekskorupa.currencyconverter.model.RealTimeCurrency;
-import jacekskorupa.currencyconverter.model.RealTimeCurrencyExchangeRate;
 import jacekskorupa.currencyconverter.repositories.CurrencyRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +21,7 @@ public class IndexController {
 
     private final String currencesSource= "https://openexchangerates.org/api/currencies.json";
     private CurrencyRepository currencyRepository;
+
 
     public IndexController(CurrencyRepository currencyRepository) {
         this.currencyRepository = currencyRepository;
@@ -46,12 +46,26 @@ public class IndexController {
 
     }
 
-    @GetMapping(path = {"/getCurrences/{from}/convert/{to}"})
+    @GetMapping(path = {"/getcurrencyexchange/{from}/convert/{to}"})
     public RealTimeCurrencyExchangeRate currencyExchangeRate(@PathVariable String from, @PathVariable String to){
         String currencyExchangeUrl = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=" + from + "&to_currency=" + to + "&apikey=KFT0KZZ3V5FDR44G";
 
         RestTemplate restTemplate = new RestTemplate();
         RealTimeCurrency exchangeRate = restTemplate.getForObject(currencyExchangeUrl, RealTimeCurrency.class);
         return exchangeRate.getRealTimeCurrencyExchangeRate();
+    }
+
+    @GetMapping(path = {"/getweeklyexchangeprice/{from}/and/{to}"})
+    public String getWeeklyExchangeChanges(@PathVariable String from, @PathVariable String to){
+        String weeklyCurrencyExchange = "https://www.alphavantage.co/query?function=FX_WEEKLY&from_symbol=" + from + "&to_symbol=" + to + "&apikey=KFT0KZZ3V5FDR44G";
+
+       RestTemplate restTemplate = new RestTemplate();
+//        WeeklyCurrency exchangeRate = restTemplate.getForObject(weeklyCurrencyExchange, WeeklyCurrency.class);
+        String exchangeRateString = restTemplate.getForObject(weeklyCurrencyExchange, String.class);
+
+        //        System.out.println(exchangeRate.timeSeriesWeekly.toString());
+        //        JSONObject myjson = new JSONObject(exchangeRateString);
+//        JSONArray the_json_array = myjson.getJSONArray("profiles");
+        return  "null";
     }
 }
