@@ -27,12 +27,12 @@ public class IndexController {
     }
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = {"getcurrencyexchange/{from}/exchange/{to}"})
-    public RealTimeCurrencyExchangeRate currencyExchangeRate(@PathVariable String from, @PathVariable String to){
+    public String currencyExchangeRate(@PathVariable String from, @PathVariable String to){
         String currencyExchangeUrl = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=" + from + "&to_currency=" + to + "&apikey=KFT0KZZ3V5FDR44G";
 
         RestTemplate restTemplate = new RestTemplate();
         RealTimeCurrency exchangeRate = restTemplate.getForObject(currencyExchangeUrl, RealTimeCurrency.class);
-        return exchangeRate.getRealTimeCurrencyExchangeRate();
+        return exchangeRate.getRealTimeCurrencyExchangeRate().getExchangeRate();
     }
 
 }
