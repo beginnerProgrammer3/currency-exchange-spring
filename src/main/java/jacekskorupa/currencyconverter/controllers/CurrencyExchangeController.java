@@ -34,7 +34,7 @@ public class CurrencyExchangeController {
         return getListOfPeroidTimeCurrencyExchange(dailyCurrencyExchange,"Daily");
     }
 
-    @GetMapping(path = {"/apitimeseriesmonthly/{from}/and/{to}"})
+    @GetMapping(path = {"api/timeseriesmonthly/{from}/and/{to}"})
     public List<CurrencyChangeToList> getMonthlyExchangeChanges(@PathVariable String from, @PathVariable String to) throws JsonProcessingException {
         String monthlyCurrencyExchange = "https://www.alphavantage.co/query?function=FX_MONTHLY&from_symbol=" + from + "&to_symbol=" + to + "&apikey=" + API_KEY;
 
