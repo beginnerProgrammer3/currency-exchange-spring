@@ -7,11 +7,12 @@ import jacekskorupa.currencyconverter.repositories.CurrencyRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping(path = {"/api/"})
 public class IndexController {
 
     CurrencyRepository currencyRepository;
@@ -21,12 +22,16 @@ public class IndexController {
     }
 
 
-    @GetMapping(path = {"getallcurrences"})
+    @GetMapping(path = {"/api/getallcurrences"})
     public List<Currency> getAllCurrences(){
-        return (List<Currency>) currencyRepository.findAll();
+            List<Currency> allCurrencies= new ArrayList<>();
+            currencyRepository.findAll().forEach(currency -> {
+                allCurrencies.add(currency);
+            });
+            return allCurrencies;
     }
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(path = {"getcurrencyexchange/{from}/exchange/{to}"})
+    @GetMapping(path = {"/api/getcurrencyexchangerate/{from}/exchange/{to}"})
     public String currencyExchangeRate(@PathVariable String from, @PathVariable String to){
         String currencyExchangeUrl = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=" + from + "&to_currency=" + to + "&apikey=KFT0KZZ3V5FDR44G";
 
