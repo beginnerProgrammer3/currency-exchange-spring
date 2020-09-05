@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@CrossOrigin(origins = "http://currencyjsapp.herokuapp.com")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class IndexController {
 
