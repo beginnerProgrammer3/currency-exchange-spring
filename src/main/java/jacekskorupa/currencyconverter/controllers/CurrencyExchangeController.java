@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.TreeMap;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://currencyjsapp.herokuapp.com")
 public class CurrencyExchangeController {
 
     private final String API_KEY = "KFT0KZZ3V5FDR44G";
