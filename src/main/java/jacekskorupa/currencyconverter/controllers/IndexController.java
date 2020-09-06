@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://currencyjsapp.herokuapp.com")
 @RestController
 @RequestMapping({"/api"})
 public class IndexController {
@@ -31,7 +31,6 @@ public class IndexController {
             });
             return allCurrencies;
     }
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = {"/getcurrencyexchangerate/{from}/exchange/{to}"})
     public String currencyExchangeRate(@PathVariable String from, @PathVariable String to){
         String currencyExchangeUrl = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=" + from + "&to_currency=" + to + "&apikey=KFT0KZZ3V5FDR44G";
