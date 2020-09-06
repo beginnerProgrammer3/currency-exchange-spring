@@ -13,6 +13,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
+@RequestMapping({"/api"})
 public class IndexController {
 
     CurrencyRepository currencyRepository;
@@ -22,7 +23,7 @@ public class IndexController {
     }
 
 
-    @GetMapping(path = {"/api/getallcurrences"})
+    @GetMapping(path = {"/getallcurrences"})
     public List<Currency> getAllCurrences(){
             List<Currency> allCurrencies= new ArrayList<>();
             currencyRepository.findAll().forEach(currency -> {
@@ -31,7 +32,7 @@ public class IndexController {
             return allCurrencies;
     }
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(path = {"/api/getcurrencyexchangerate/{from}/exchange/{to}"})
+    @GetMapping(path = {"/getcurrencyexchangerate/{from}/exchange/{to}"})
     public String currencyExchangeRate(@PathVariable String from, @PathVariable String to){
         String currencyExchangeUrl = "https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=" + from + "&to_currency=" + to + "&apikey=KFT0KZZ3V5FDR44G";
 
