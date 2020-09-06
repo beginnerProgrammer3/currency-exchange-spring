@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@CrossOrigin(origins = "http://currencyjsapp.herokuapp.com")
+@CrossOrigin(origins = "https://currencyjsapp.herokuapp.com")
 @RestController
 @RequestMapping({"/api"})
 public class IndexController {

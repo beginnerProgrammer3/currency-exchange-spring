@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.TreeMap;
 
 @RestController
-@CrossOrigin(origins = "http://currencyjsapp.herokuapp.com")
+@CrossOrigin(origins = "https://currencyjsapp.herokuapp.com")
 @RequestMapping({"/api"})
 public class CurrencyExchangeController {
 
